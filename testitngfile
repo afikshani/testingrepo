@@ -1,0 +1,21 @@
+name: push release to develop action
+on:
+  push:
+    branches:
+      - 'release/v_**'
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ""                               
+        destination_branch: "develop"                    
+        pr_title: "pushing ${{ github.ref }} into develop"
+        pr_body: ":crown: *An automated PR*"             
+        pr_draft: false                                    # Creates pull request as draft
+        pr_allow_empty: false                              # Creates pull request even if there are no changes
+        github_token: ${{ secrets.AFIK_TOKEN }}

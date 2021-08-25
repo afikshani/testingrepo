@@ -8,12 +8,10 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
 
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.26.0
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
-          RELEASE_BRANCHES: develop
-          WITH_V: true
+        with:
+          tag-prefix:  'v'

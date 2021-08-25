@@ -3,7 +3,7 @@ on:
   workflow_dispatch
 
 jobs:
-  create_release:
+  create_release_workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
@@ -23,11 +23,12 @@ jobs:
         shell: bash
         run: echo 'About to create release branch for the new version ${{ steps.version-bump.outputs.newTag }}'
 
+      - name: Create release branch step
       - uses: invisionapp/private-action-loader@v3
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
           pal-repo-token: ${{ secrets.AFIK_TOKEN }}
           pal-repo-name: ironsource-aura/blue-github-actions
-          pal-action-directory: createBranch
+          pal-action-directory: createBranchFromTag
           tag: ${{ steps.version-bump.outputs.newTag }}

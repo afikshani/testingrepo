@@ -7,15 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
-      - name: Automated Version Bump
+      - name: Automated service version bump
+        id: version-bump
         uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
           tag-prefix: 'v'
 
-      - name: test
+      - name: Testing
         shell: bash
         run: echo ${{ steps.version-bump.outputs.newTag }}

@@ -1,4 +1,4 @@
-name: Automated release branch creation
+name: Create next release
 on:
   workflow_dispatch
 
@@ -16,7 +16,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
           default: 'minor'
-          commit-message: '{{version}}' // do not touch
+          commit-message: '{{version}}'
           tag-prefix: 'v'
 
       - name: Testing

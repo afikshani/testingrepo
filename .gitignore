@@ -1,0 +1,6 @@
+.DS_Store
+temp
+history
+.idea
+node_modules
+local.js

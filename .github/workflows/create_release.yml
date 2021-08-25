@@ -6,8 +6,8 @@ jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
+#      - name: Check out Git repository
+#        uses: actions/checkout@v2
 
       - name: Automated Version Bump
         uses: phips28/gh-action-bump-version@master

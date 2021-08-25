@@ -17,7 +17,7 @@ jobs:
         with:
           default: 'minor'
           commit-message: '{{version}}'
-          tag-prefix: v
+          tag-prefix: 'v'
 
       - name: Notify about release creation
         shell: bash

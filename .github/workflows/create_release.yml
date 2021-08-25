@@ -6,11 +6,13 @@ jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
       - name: List files in the repository
         shell: bash
         run: |
           npm version minor
-      - uses: actions/checkout@v2
+
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:

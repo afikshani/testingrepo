@@ -13,5 +13,5 @@ jobs:
         uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
-        with:
-          tag-prefix: 'v'
+#        with:
+#          tag-prefix: 'v'

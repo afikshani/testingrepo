@@ -9,7 +9,7 @@ jobs:
       - name: List files in the repository
         shell: bash
         run: |
-          ls ${{ github.workspace }}
+          npm version minor
       - uses: actions/checkout@v2
       - name: pull-request
         uses: repo-sync/pull-request@v2

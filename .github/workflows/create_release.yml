@@ -19,6 +19,6 @@ jobs:
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
-      - name: Testing
+      - name: testing
         shell: bash
         run: echo ${{ steps.version-bump.outputs.newTag }}

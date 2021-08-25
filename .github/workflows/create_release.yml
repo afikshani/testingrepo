@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
 
       - name: Automated service version bump
         id: version-bump
@@ -19,6 +19,15 @@ jobs:
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
-      - name: testing
+      - name: Notify about release creation
         shell: bash
-        run: echo ${{ steps.version-bump.outputs.newTag }}
+        run: echo 'about to create release branch for the new version - ${{ steps.version-bump.outputs.newTag }}'
+
+      - uses: invisionapp/private-action-loader@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
+        with:
+          pal-repo-token: ${{ secrets.AFIK_TOKEN }}
+          pal-repo-name: ironsource-aura/blue-github-actions
+          pal-action-directory: createBranch
+          tag: ${{ steps.version-bump.outputs.newTag }}

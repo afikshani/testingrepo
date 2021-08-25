@@ -21,7 +21,7 @@ jobs:
 
       - name: Notify about release creation
         shell: bash
-        run: echo 'About to create release branch for the new version - ${{ steps.version-bump.outputs.newTag }}'
+        run: echo 'About to create release branch for the new version ${{ steps.version-bump.outputs.newTag }}'
 
       - uses: invisionapp/private-action-loader@v3
         env:

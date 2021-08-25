@@ -1,0 +1,34 @@
+name: Create next release
+on:
+  workflow_dispatch
+
+jobs:
+  create_release_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Automated service version bump
+        id: version-bump
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
+        with:
+          default: 'minor'
+          commit-message: '{{version}}'
+          tag-prefix: 'v'
+
+      - name: Notify about release creation
+        shell: bash
+        run: echo 'About to create release branch for the new version ${{ steps.version-bump.outputs.newTag }}'
+
+      - name: Create release branch step
+      - uses: invisionapp/private-action-loader@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
+        with:
+          pal-repo-token: ${{ secrets.AFIK_TOKEN }}
+          pal-repo-name: ironsource-aura/blue-github-actions
+          pal-action-directory: createBranchFromTag
+          tag: ${{ steps.version-bump.outputs.newTag }}

@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Automated service version bump
         id: version-bump
@@ -15,6 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
+          default: minor
           tag-prefix: 'v'
 
       - name: Testing

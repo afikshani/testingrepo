@@ -1,0 +1,22 @@
+name: Automated release branch creation
+on:
+  workflow_dispatch
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ""
+          destination_branch: "develop"
+          pr_title: "pushing ${{ github.ref }} into develop"
+          pr_body: ":crown: *An automated PR*"
+          pr_draft: false                                    # Creates pull request as draft
+          pr_allow_empty: false                              # Creates pull request even if there are no changes
+          github_token: ${{ secrets.AFIK_TOKEN }}

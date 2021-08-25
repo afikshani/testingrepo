@@ -2,5 +2,6 @@
 temp
 history
 .idea
+/.idea
 node_modules
 local.js

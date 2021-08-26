@@ -19,11 +19,11 @@ jobs:
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
-      - name: Notify about release creation
+      - name: Notify user
         shell: bash
         run: echo 'About to create release branch for the new version- ${{ steps.version-bump.outputs.newTag }}'
 
-      - name: Create release branch step
+      - name: Create release branch
         uses: invisionapp/private-action-loader@v3
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}

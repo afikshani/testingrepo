@@ -33,14 +33,3 @@ jobs:
           pal-action-directory: createBranchFromTag
           tag: ${{ steps.version-bump.outputs.newTag }}
 
-      - name: Notify about release creation
-        shell: bash
-        run: echo hello - ${NEW_RELEASE_NAME}
-
-      - name: creating release candidate branch
-        uses: satya-500/create-branch@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
-        with:
-          branch: ${NEW_RELEASE_NAME}
-          from_tag: ${{ steps.version-bump.outputs.newTag }}

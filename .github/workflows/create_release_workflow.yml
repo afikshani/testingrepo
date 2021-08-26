@@ -19,6 +19,9 @@ jobs:
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
+      - name: testing for fetch the tag created
+        uses: actions/checkout@v1
+
       - name: Notify about release creation
         shell: bash
         run: echo 'About to create release branch for the new version ${{ steps.version-bump.outputs.newTag }}'

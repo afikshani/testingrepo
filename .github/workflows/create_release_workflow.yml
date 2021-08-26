@@ -19,7 +19,7 @@ jobs:
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
-      - name: testing for fetch the tag created
+      - name: Testing for fetch the tag created
         uses: actions/checkout@v1
 
       - name: Notify about release creation

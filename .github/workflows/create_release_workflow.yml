@@ -30,5 +30,5 @@ jobs:
         with:
           pal-repo-token: ${{ secrets.AFIK_TOKEN }}
           pal-repo-name: ironsource-aura/blue-github-actions
-          pal-action-directory: createBranchFromTag
+          pal-action-directory: my-cool-action
           tag: ${{ steps.version-bump.outputs.newTag }}

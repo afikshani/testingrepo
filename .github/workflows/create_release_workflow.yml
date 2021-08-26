@@ -35,4 +35,4 @@ jobs:
 
       - name: Notify about release creation
         shell: bash
-        run: echo ${NEW_RELEASE_NAME}
+        run: echo hello - ${NEW_RELEASE_NAME}

@@ -1,0 +1,45 @@
+name: Push to release workflow
+
+on:
+  push:
+    branches:
+      - 'release/v_**'
+  workflow_dispatch:  # let us run the the job manually
+
+jobs:
+  push-to-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+      - name: Get branch name
+      - uses: invisionapp/private-action-loader@v3
+        id: get-branch-name
+        with:
+          pal-repo-token: ${{ secrets.AFIK_TOKEN }}
+          pal-repo-name: ironsource-aura/blue-github-actions
+          pal-action-directory: getBranchForDocker
+          is-pull-request: "false"
+      - name: Patch version bump
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
+        with:
+          target-branch: ${{ steps.get-branch.outputs.formatted-branch-name }}
+          commit-message: '{{version}}'
+          tag-prefix: 'v'
+
+      - name: Notify user
+        shell: bash
+        run: echo '${{ steps.get-branch.outputs.formatted-branch-name }} version was bumped. Now checking if pr to develop is needed  :)'
+
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ""
+          destination_branch: "develop"
+          pr_title: Automated PR ${{ steps.get-branch.outputs.formatted-branch-name }} -> develop
+          pr_body: ":crown: *An automated PR*"
+          pr_draft: false                                    # Creates pull request as draft
+          pr_allow_empty: false                              # Creates pull request even if there are no changes
+          github_token: ${{ secrets.AFIK_TOKEN }}

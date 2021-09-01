@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v1
+
       - name: Get branch name
       - uses: invisionapp/private-action-loader@v3
         id: get-branch-name
@@ -20,6 +21,7 @@ jobs:
           pal-repo-name: ironsource-aura/blue-github-actions
           pal-action-directory: getBranchForDocker
           is-pull-request: "false"
+
       - name: Patch version bump
         uses: phips28/gh-action-bump-version@master
         env:

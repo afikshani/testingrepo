@@ -31,5 +31,5 @@ jobs:
 
       - name: Notify on success
         shell: bash
-        run: echo 'Finished bumping version for release cadnidate - ${{ steps.get-branch.outputs.formatted-branch-name }}'
+        run: echo 'Finished bumping version for release candidate - ${{ steps.get-branch.outputs.formatted-branch-name }}'
 

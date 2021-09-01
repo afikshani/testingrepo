@@ -25,11 +25,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
-          target-branch: ${{ steps.get-branch.outputs.branch-name }}
+          target-branch: ${{ steps.get-branch.outputs.formatted-branch-name }}
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
       - name: Notify on success
         shell: bash
-        run: echo 'Finished bumping patch version for - ${{ steps.get-branch.outputs.branch-name }}'
+        run: echo 'Finished bumping patch version for - ${{ steps.get-branch.outputs.formatted-branch-name }}'
 

@@ -1,6 +1,6 @@
 {
   "name": "testrepo",
-  "version": "4.25.1",
+  "version": "4.26.0",
   "dependencies": {
     "url": "^0.11.0"
   }

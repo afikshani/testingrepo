@@ -1,4 +1,5 @@
 name: Automate npm patch on release
+
 on:
   push:
     branches:

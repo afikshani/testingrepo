@@ -1,0 +1,26 @@
+name: Automate npm patch on release
+on:
+  push:
+    branches:
+      - 'release/**'
+jobs:
+  create_release_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Patch version bump
+        id: version-bump
+        uses: phips28/gh-action-bump-version@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
+        with:
+          target-branch: 'release/v_4.20'
+          commit-message: '{{version}}'
+          tag-prefix: 'v'
+
+      - name: Notify on success
+        shell: bash
+        run: echo 'Finished bumping patch version'
+

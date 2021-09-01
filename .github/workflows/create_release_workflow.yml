@@ -15,7 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
-          default: 'minor'
+          default: 'preminor'
           commit-message: '{{version}}'
           tag-prefix: 'v'
 

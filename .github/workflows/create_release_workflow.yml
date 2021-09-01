@@ -3,7 +3,7 @@ on:
   workflow_dispatch
 
 jobs:
-  create_release_job:
+  create_release_workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository

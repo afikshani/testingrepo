@@ -1,4 +1,5 @@
 name: Create next release
+
 on:
   workflow_dispatch
 
@@ -9,7 +10,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v1
 
-      - name: Service minor version bump
+      - name: SERVICE_PLACEHOLDER minor version bump
         id: version-bump
         uses: phips28/gh-action-bump-version@master
         env:

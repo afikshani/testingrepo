@@ -6,7 +6,7 @@ on:
       - 'release/v_**'
 
 jobs:
-  push_to_release_job:
+  push_to_release:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository

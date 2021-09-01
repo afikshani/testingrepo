@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'release/**'
+
 jobs:
   create_release_workflow:
     runs-on: ubuntu-latest
@@ -24,11 +25,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
-          target-branch: ${{ process.env.BRANCH_NAME }}
+          target-branch: ${{ steps.get-branch.outputs.branch-name }}
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
       - name: Notify on success
         shell: bash
-        run: echo 'Finished bumping patch version for - ${BRANCH_NAME}'
+        run: echo 'Finished bumping patch version for - ${{ steps.get-branch.outputs.branch-name }}'
 

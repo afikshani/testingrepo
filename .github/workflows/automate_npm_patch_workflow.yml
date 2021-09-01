@@ -10,17 +10,24 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
+      - uses: invisionapp/private-action-loader@v3
+        with:
+          pal-repo-token: ${{ secrets.AFIK_TOKEN }}
+          pal-repo-name: ironsource-aura/blue-github-actions
+          pal-action-directory: getBranchForDocker
+          is-pull-request: "false"
+
       - name: Patch version bump
         id: version-bump
         uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
-          target-branch: 'release/v_4.20'
+          target-branch: ${BRANCH_NAME}
           commit-message: '{{version}}'
           tag-prefix: 'v'
 
       - name: Notify on success
         shell: bash
-        run: echo 'Finished bumping patch version'
+        run: echo 'Finished bumping patch version for - ${BRANCH_NAME}'
 

@@ -1,6 +1,7 @@
 name: Push to release workflow
 
 on:
+  workflow_dispatch,
   push:
     branches:
       - 'release/v_**'

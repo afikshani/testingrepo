@@ -1,9 +1,13 @@
-name: Create next release
+name: Push to release workflow
+
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - 'release/v_**'
+  workflow_dispatch:  # let us run the the job manually
 
 jobs:
-  create_release_workflow:
+  push-to-release:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository

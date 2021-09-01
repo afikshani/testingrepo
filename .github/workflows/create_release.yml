@@ -9,7 +9,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v1
 
-      - name: "Service" minor version bump
+      - name: Service minor version bump
         id: version-bump
         uses: phips28/gh-action-bump-version@master
         env:

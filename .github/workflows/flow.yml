@@ -32,7 +32,7 @@ jobs:
 
       - name: Notify user
         shell: bash
-        run: echo '${{ steps.get-branch.outputs.formatted-branch-name }} version was bumped. Now checking if pr to develop is needed :)'
+        run: echo '${{ steps.get-branch.outputs.formatted-branch-name }} version was bumped. Now checking if pr to develop is needed  :)'
 
       - name: pull-request
         uses: repo-sync/pull-request@v2

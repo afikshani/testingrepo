@@ -11,6 +11,7 @@ jobs:
         uses: actions/checkout@v2
 
       - uses: invisionapp/private-action-loader@v3
+        id: get-branch
         with:
           pal-repo-token: ${{ secrets.AFIK_TOKEN }}
           pal-repo-name: ironsource-aura/blue-github-actions
@@ -18,12 +19,11 @@ jobs:
           is-pull-request: "false"
 
       - name: Patch version bump
-        id: version-bump
         uses: phips28/gh-action-bump-version@master
         env:
           GITHUB_TOKEN: ${{ secrets.AFIK_TOKEN }}
         with:
-          target-branch: ${BRANCH_NAME}
+          target-branch: ${{ process.env.BRANCH_NAME }}
           commit-message: '{{version}}'
           tag-prefix: 'v'
 

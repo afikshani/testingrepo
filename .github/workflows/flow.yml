@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'release/v_**'
-  workflow_dispatch:  # let us run the the job manually
 
 jobs:
   push-to-release:
